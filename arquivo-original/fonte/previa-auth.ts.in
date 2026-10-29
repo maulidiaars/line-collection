@@ -1,0 +1,45 @@
+// Protege /previa e /previa/* com HTTP Basic Auth (no servidor, antes de entregar qualquer arquivo).
+// Guarda só o SHA-256 de "usuario:senha"; a senha em si não fica no código.
+const HASH = "__HASH__";
+const REALM = 'Basic realm="Line Collection", charset="UTF-8"';
+
+async function sha256hex(s: string): Promise<string> {
+  const d = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(s));
+  return [...new Uint8Array(d)].map((b) => b.toString(16).padStart(2, "0")).join("");
+}
+function same(a: string, b: string): boolean {
+  if (a.length !== b.length) return false;
+  let r = 0;
+  for (let i = 0; i < a.length; i++) r |= a.charCodeAt(i) ^ b.charCodeAt(i);
+  return r === 0;
+}
+function deny(): Response {
+  return new Response("Acesso restrito.", {
+    status: 401,
+    headers: {
+      "WWW-Authenticate": REALM,
+      "Content-Type": "text/plain; charset=utf-8",
+      "Cache-Control": "no-store",
+      "X-Robots-Tag": "noindex, nofollow, noarchive, nosnippet, noimageindex",
+    },
+  });
+}
+
+export default async (request: Request, context: any) => {
+  const auth = request.headers.get("authorization") || "";
+  if (!auth.toLowerCase().startsWith("basic ")) return deny();
+  let decoded = "";
+  try {
+    decoded = new TextDecoder().decode(Uint8Array.from(atob(auth.slice(6).trim()), (c) => c.charCodeAt(0)));
+  } catch { return deny(); }
+  if (!same(await sha256hex(decoded), HASH)) return deny();
+  const url = new URL(request.url);
+  if (url.pathname === "/previa") return Response.redirect(url.origin + "/previa/" + url.search, 301);
+  const res = await context.next();
+  const out = new Response(res.body, res);
+  out.headers.set("X-Robots-Tag", "noindex, nofollow, noarchive, nosnippet, noimageindex");
+  out.headers.set("Cache-Control", "private, no-cache");
+  return out;
+};
+
+export const config = { path: ["/previa", "/previa/*"], cache: "manual" };

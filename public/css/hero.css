@@ -1,0 +1,19 @@
+/* Hero simples: teks di kiri, satu gambar plugin di kanan. Tanpa animasi 3D. */
+#hero3d{display:none!important}
+.hero{height:auto!important;min-height:100svh;display:flex;align-items:center;padding:120px 7vw 80px;overflow:hidden}
+.hero::before{content:"";position:absolute;right:-8vw;top:50%;width:min(70vw,860px);aspect-ratio:1;transform:translateY(-50%);background:radial-gradient(closest-side,rgba(51,230,255,.16),rgba(196,92,255,.09) 55%,transparent 75%);pointer-events:none}
+.hero-in{position:relative;z-index:1;width:100%;max-width:1320px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(32px,5vw,80px);align-items:center}
+.hero-copy{position:static!important;height:auto!important;padding:0!important;display:block!important}
+.hero-copy::before{content:none!important}
+.hero-copy>*{max-width:560px}
+.hero h1{font-size:clamp(44px,6.2vw,88px);line-height:1}
+.hero .eyebrow{margin-bottom:20px}
+.hero .lead{margin:22px 0 30px}
+.hero-art{position:relative}
+.hero-art img{display:block;width:100%;height:auto;border-radius:18px;box-shadow:0 50px 110px -40px #000,0 0 0 1px rgba(255,255,255,.08),0 0 90px -30px rgba(51,230,255,.45)}
+@media (max-width:900px){
+  .hero{min-height:auto;padding:100px 6vw 56px}
+  .hero-in{grid-template-columns:1fr;gap:36px}
+  .hero-copy>*{max-width:none}
+  .hero::before{right:-30vw;top:70%;width:110vw}
+}

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="pt-BR"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Line Collection — em breve</title>
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<meta name="googlebot" content="noindex, nofollow">
+<meta name="description" content="Line Collection — em breve.">
+<meta name="theme-color" content="#0A0D14">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:"Inter";font-weight:100 900;font-display:swap;src:url(/fonts/inter-latin-wght-normal.woff2) format("woff2")}
+@font-face{font-family:"JetBrains Mono";font-weight:400;font-display:swap;src:url(/fonts/jetbrains-mono-latin-400-normal.woff2) format("woff2")}
+:root{--bg:#0A0D14;--tx:#E6F1F8;--mu:#8AA4BA;--fa:#5F7488;--cy:#33E6FF;--pu:#C45CFF;--in:#7A8CFF;--grad:linear-gradient(90deg,#33E6FF,#7A8CFF 50%,#C45CFF)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:Inter,"Segoe UI",system-ui,sans-serif;color:var(--tx);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+  background:radial-gradient(900px 640px at 12% -8%,#1B2A3C 0,transparent 62%),radial-gradient(900px 700px at 100% 108%,#2A1640 0,transparent 60%),var(--bg);
+  display:grid;place-items:center;overflow:hidden;min-height:100svh;padding:24px}
+.orb{position:fixed;border-radius:50%;filter:blur(70px);opacity:.55;pointer-events:none;animation:float 14s ease-in-out infinite}
+.orb.a{width:420px;height:420px;left:-120px;top:10%;background:radial-gradient(circle,#33E6FF55,transparent 70%)}
+.orb.b{width:520px;height:520px;right:-160px;bottom:-80px;background:radial-gradient(circle,#C45CFF55,transparent 70%);animation-delay:-7s}
+@keyframes float{50%{transform:translate(30px,-24px)}}
+.card{position:relative;width:min(640px,100%);padding:56px 48px 44px;border-radius:28px;text-align:center;
+  background:linear-gradient(180deg,rgba(23,32,45,.62),rgba(12,16,24,.55));
+  border:1px solid rgba(170,205,240,.12);backdrop-filter:blur(22px) saturate(140%);-webkit-backdrop-filter:blur(22px) saturate(140%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 40px 120px -40px #000,0 0 120px -60px #33E6FF}
+.card::before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;background:linear-gradient(135deg,rgba(51,230,255,.55),transparent 35%,transparent 65%,rgba(196,92,255,.55));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+.ring{width:96px;height:96px;margin:0 auto 26px;filter:drop-shadow(0 0 18px rgba(51,230,255,.45)) drop-shadow(0 0 26px rgba(196,92,255,.35));animation:spin 18s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.brand{font-size:clamp(30px,6vw,46px);letter-spacing:.2em;font-weight:300;line-height:1.1;padding-left:.2em}
+.brand b{font-weight:800;color:var(--cy)}
+.soon{display:inline-block;margin:22px 0 18px;font:600 12px "JetBrains Mono",ui-monospace,monospace;letter-spacing:.32em;text-transform:uppercase;padding:8px 16px 8px 20px;border-radius:999px;
+  border:1px solid rgba(170,205,240,.16);background:rgba(255,255,255,.03)}
+.soon span{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.tag{color:var(--mu);font-size:clamp(16px,2.4vw,19px);line-height:1.6;max-width:440px;margin:0 auto}
+.bar{height:2px;width:120px;margin:30px auto 0;border-radius:2px;background:var(--grad);box-shadow:0 0 16px #33E6FF88}
+.by{margin-top:22px;font:12px "JetBrains Mono",ui-monospace,monospace;letter-spacing:.2em;text-transform:uppercase;color:var(--fa)}
+@media (prefers-reduced-motion:reduce){.ring,.orb{animation:none}}
+@media (max-width:520px){.card{padding:44px 24px 36px}}
+</style>
+</head><body>
+<div class="orb a"></div><div class="orb b"></div>
+<main class="card">
+  <svg class="ring" viewBox="0 0 64 64" role="img" aria-label="Line Collection"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#33E6FF"/><stop offset=".55" stop-color="#7A8CFF"/><stop offset="1" stop-color="#C45CFF"/></linearGradient><radialGradient id="k" cx=".5" cy=".35" r=".7"><stop offset="0" stop-color="#3A4250"/><stop offset="1" stop-color="#0B0E14"/></radialGradient></defs><circle cx="32" cy="32" r="27" fill="none" stroke="#1A2330" stroke-width="4"/><path d="M13.1 50.9A27 27 0 1 1 50.9 50.9" fill="none" stroke="url(#g)" stroke-width="4" stroke-linecap="round"/><circle cx="32" cy="32" r="17" fill="url(#k)" stroke="rgba(255,255,255,.12)"/><circle cx="32" cy="20.5" r="2.4" fill="#33E6FF"/></svg>
+  <h1 class="brand"><b>LINE</b>COLLECTION</h1>
+  <p class="soon"><span>Em breve</span></p>
+  <p class="tag">Uma nova linha de plugins para quem produz música. Estamos preparando o lançamento.</p>
+  <div class="bar"></div>
+  <p class="by">by Carlos Chicano</p>
+</main>
+</body></html>

@@ -1,0 +1,11 @@
+/* Camada da loja sobre o visual original: navegação com conta/carrinho e estados dos botões */
+.btn{cursor:pointer;border:0;font-family:inherit;font-size:inherit}
+.btn.ghost{border:1px solid var(--line)}
+.btn[disabled],.btn[aria-disabled="true"]{opacity:.55;pointer-events:none}
+.btn.owned{background:transparent;color:var(--cy);border:1px solid var(--cy);box-shadow:none}
+.buy-row{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.buy-row .p s{color:var(--mu);margin-right:8px;font-size:14px}
+.buy-row .p span{font-size:26px;font-weight:800}
+.price .val{font-variant-numeric:tabular-nums}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#0E1D33;border:1px solid var(--line);border-left:3px solid var(--cy);padding:12px 18px;border-radius:10px;z-index:80;font-size:14px;max-width:90vw;box-shadow:0 20px 50px -20px #000}
+.toast.err{border-left-color:#FF5A7A}

@@ -1,0 +1,41 @@
+LINE COLLECTION - SITE (CÓDIGO FONTE)
+Cópia de 24/10/2026, igual à versão que está no ar.
+
+O QUE TEM AQUI
+- publicado-dist\
+  O site pronto, exatamente como está publicado na Netlify.
+  - index.html: a página pública "Em breve".
+  - previa\: o site completo, protegido por senha.
+  - fonts\: as fontes do site.
+- fonte\
+  Os arquivos usados para gerar o site.
+  - build.py: o gerador. Ele cria a pasta "dist" (publicado-dist).
+  - config.js: preços, pacotes e links de compra. Os links de compra ainda são
+    provisórios e serão trocados pelos links do Gumroad no lançamento.
+  - glass.css e sem-demo.css: o visual (vidro, sem demos de áudio).
+  - em-breve.html: a página pública "Em breve".
+  - netlify.toml: a configuração da Netlify.
+  - netlify\edge-functions\previa-auth.ts: a senha que protege a página /previa/.
+    previa-auth.ts.in é o modelo usado para gerar esse arquivo.
+  - assets-vidro\ e assets-fix\: as imagens dos plugins (visual vidro).
+  - fonts\: as fontes Inter e JetBrains Mono (licença OFL).
+  - logo.svg: o logo e o ícone do site.
+  - LEIA-ME.md: as anotações técnicas.
+  - SENHA-PREVIA.example.txt: modelo do arquivo de senha da prévia. A senha
+    de verdade não vem nesta cópia; o Carlos passa o acesso.
+  - README.md (na raiz): guia técnico em inglês para quem for programar.
+- base-site\
+  O site original que serve de base para o build: o HTML, o CSS, o JS e as
+  imagens. Inclui também o arquivo de animações da v1 (v1-textures).
+
+COMO É PUBLICADO
+- A hospedagem é na Netlify, no projeto "linecollection".
+- O domínio é linecollection.art.br, registrado no Registro.br. O www também
+  funciona e leva para o mesmo lugar.
+- O público vê só a página "Em breve".
+- O site completo fica em https://linecollection.art.br/previa/ e pede usuário
+  e senha (o Carlos passa o acesso).
+- O site não aparece no Google (noindex) até o lançamento.
+- Para atualizar, a Mimi roda o build.py e publica a pasta "dist" na Netlify.
+  Os caminhos dentro do build.py apontam para a máquina da Mimi, por isso, para
+  mudar alguma coisa, é só pedir pra ela.

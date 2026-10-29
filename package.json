@@ -1,0 +1,28 @@
+{
+  "name": "line-collection",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Toko plugin audio Line Collection (frontend + backend)",
+  "main": "server/index.js",
+  "engines": {
+    "node": ">=22.5.0"
+  },
+  "scripts": {
+    "start": "node --disable-warning=ExperimentalWarning server/index.js",
+    "dev": "node --disable-warning=ExperimentalWarning --watch server/index.js",
+    "migrate": "node --disable-warning=ExperimentalWarning server/db/migrate.js",
+    "seed": "node --disable-warning=ExperimentalWarning server/db/seed.js",
+    "criar-admin": "node --disable-warning=ExperimentalWarning scripts/criar-admin.js",
+    "test": "node --disable-warning=ExperimentalWarning --test tests/loja.test.js tests/mercadopago.test.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^18.0.9",
+    "express": "^4.22.3",
+    "express-rate-limit": "^8.7.1",
+    "helmet": "^8.3.0",
+    "multer": "^2.5.0",
+    "nodemailer": "^10.2.1"
+  }
+}

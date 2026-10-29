@@ -1,0 +1,7 @@
+/* Header e ajustes SOMENTE do painel admin (separado da navbar dos usuários) */
+.adm-top{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:14px;padding:12px 4vw;background:#070D18;border-bottom:1px solid var(--line)}
+.adm-top .logo{display:inline-flex;align-items:center;gap:10px;font-size:14px}.adm-top .logo svg{width:26px;height:26px}
+.adm-top .logo b{font-weight:300;letter-spacing:.18em}.adm-top .logo span{font-weight:800;color:var(--cy)}
+.adm-tag{font:700 10px var(--mono);letter-spacing:.16em;color:var(--bad);border:1px solid rgba(255,90,122,.45);background:rgba(255,90,122,.1);padding:4px 8px;border-radius:6px}
+.adm-top .sp{flex:1}.adm-user{font-size:13px;color:var(--mu)}
+@media (max-width:600px){.adm-user,.adm-top .logo b{display:none}}

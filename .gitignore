@@ -1,0 +1,7 @@
+node_modules/
+.env
+data/
+storage/
+public/assets/img/uploads/
+*.log
+shots/

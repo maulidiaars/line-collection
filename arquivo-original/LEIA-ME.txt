@@ -1,0 +1,5 @@
+Arquivo apenas para REFERENCIA (nao e usado pela loja).
+Contem o gerador antigo (build.py), o config.js com os precos/links Gumroad provisorios, os estilos
+glass.css/sem-demo.css e as anotacoes do projeto original. Os precos do config.js foram migrados
+para o banco de dados (server/db/seed.js). Os audios/videos de demo e os renders PNG originais
+continuam no ZIP que voce enviou.
