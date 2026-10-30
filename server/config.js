@@ -15,7 +15,7 @@ const config = {
   storageDir: path.resolve(env.STORAGE_DIR || path.join(__dirname, '..', 'storage')),
   maxUploadMb: parseInt(env.MAX_UPLOAD_MB || '200', 10),
   downloadTokenMinutes: 5,
-  // 'sandbox' = simulasi lokal untuk uji coba | 'mercadopago' = pembayaran asli
+  // 'manual' = transferência/PIX + comprovante aprovado pelo admin | 'mercadopago' = gateway | 'sandbox' = simulação local de teste
   paymentProvider: (env.PAYMENT_PROVIDER || 'sandbox').toLowerCase(),
   mp: {
     accessToken: env.MP_ACCESS_TOKEN || '',
@@ -34,14 +34,14 @@ function validate() {
     if (isProd) problems.push('SESSION_SECRET wajib diisi (minimal 32 karakter) di mode production.');
     else config.sessionSecret = crypto.randomBytes(32).toString('hex');
   }
-  if (!['sandbox', 'mercadopago'].includes(config.paymentProvider))
-    problems.push('PAYMENT_PROVIDER harus "sandbox" atau "mercadopago".');
+  if (!['sandbox', 'mercadopago', 'manual'].includes(config.paymentProvider))
+    problems.push('PAYMENT_PROVIDER harus "manual", "mercadopago" atau "sandbox".');
   if (config.paymentProvider === 'mercadopago') {
     if (!config.mp.accessToken) problems.push('MP_ACCESS_TOKEN belum diisi (diperlukan untuk Mercado Pago).');
     if (!config.mp.webhookSecret) problems.push('MP_WEBHOOK_SECRET belum diisi (diperlukan untuk verifikasi webhook).');
   }
   if (isProd && config.paymentProvider === 'sandbox')
-    problems.push('Mode sandbox tidak boleh dipakai di production. Set PAYMENT_PROVIDER=mercadopago.');
+    problems.push('Mode sandbox tidak boleh dipakai di production. Set PAYMENT_PROVIDER=manual (transferência/PIX) atau mercadopago.');
   if (!config.sandboxSecret) config.sandboxSecret = crypto.createHash('sha256').update('sandbox:' + config.sessionSecret).digest('hex');
   return problems;
 }

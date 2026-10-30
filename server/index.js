@@ -43,6 +43,7 @@ app.use('/api/account', require('./routes/account'));
 app.use('/api', require('./routes/shop'));
 app.use('/api/webhooks', require('./routes/webhooks'));
 app.use('/api/sandbox', require('./routes/sandbox'));
+app.use('/api/pay', require('./routes/manual'));
 app.use('/api/downloads', require('./routes/downloads'));
 app.use('/api/admin', require('./routes/admin'));
 app.use('/api', (req, res) => res.status(404).json({ error: 'Rota não encontrada.' }));
@@ -74,6 +75,7 @@ app.get(['/entrar', '/cadastro', '/esqueci-senha', '/redefinir-senha'], page('au
 app.get(/^\/conta(\/.*)?$/, needLogin('conta.html'));
 app.get(/^\/admin(\/.*)?$/, needAdmin('admin.html'));
 app.get(['/carrinho', '/checkout'], needLogin('checkout.html'));
+app.get('/pagamento/transferencia', needLogin('transfer.html'));
 app.get('/pagamento/resultado', needLogin('resultado.html'));
 app.get('/sandbox/pagar', (req, res, next) => (config.paymentProvider === 'sandbox' && !config.isProd) ? needLogin('sandbox.html')(req, res) : next());
 
@@ -96,7 +98,7 @@ if (require.main === module) {
   app.listen(config.port, () => {
     const admins = get("SELECT COUNT(*) c FROM users WHERE role='admin'").c;
     console.log(`\n✅ Line Collection rodando em ${config.baseUrl}`);
-    console.log(`   Pagamento: ${config.paymentProvider === 'sandbox' ? 'SANDBOX (simulação, sem dinheiro real)' : 'Mercado Pago'}`);
+    console.log(`   Pagamento: ${config.paymentProvider === 'sandbox' ? 'SANDBOX (simulação, sem dinheiro real)' : config.paymentProvider === 'manual' ? 'MANUAL (PIX/transferência + comprovante aprovado pelo admin)' : 'Mercado Pago'}`);
     if (!admins) console.log('   ⚠  Nenhum admin criado ainda. Rode:  npm run criar-admin');
   });
 }

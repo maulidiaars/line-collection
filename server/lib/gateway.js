@@ -1,11 +1,13 @@
 'use strict';
 // Camada de pagamento. Dua implementasi:
 //  - mercadopago: integrasi resmi via REST API (Checkout Pro + webhook ber-tanda-tangan)
+//  - manual:      transferência/PIX; o cliente envia o comprovante e o ADMIN aprova (ver routes/manual.js)
 //  - sandbox:     simulasi LOKAL untuk uji coba; tidak ada uang sungguhan. Ditolak di production.
 const crypto = require('node:crypto');
 const { config } = require('../config');
 const { get, run } = require('../db');
 const { timingSafeEqualStr } = require('./security');
+const { notifyAdmins } = require('./notify');
 
 const MP_API = 'https://api.mercadopago.com';
 
@@ -26,6 +28,13 @@ async function startPayment(order, items, user) {
   const ins = run('INSERT INTO payments(order_id,provider,status,amount_cents,currency) VALUES (?,?,?,?,?)',
     order.id, config.paymentProvider, 'pending', order.total_cents, order.currency);
   const paymentRowId = Number(ins.lastInsertRowid);
+
+  if (config.paymentProvider === 'manual') {
+    run("UPDATE payments SET method='transfer' WHERE id=?", paymentRowId);
+    notifyAdmins('admin_order', 'Novo pedido: ' + order.order_number,
+      `${user.name} (${user.email}) fez um pedido de R$ ${(order.total_cents / 100).toFixed(2).replace('.', ',')}. Aguardando o pagamento e o comprovante.`, '/admin/pagamentos');
+    return { redirectUrl: `/pagamento/transferencia?pedido=${order.order_number}`, paymentRowId };
+  }
 
   if (config.paymentProvider === 'sandbox') {
     const ref = 'sbx_' + crypto.randomBytes(8).toString('hex');

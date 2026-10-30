@@ -5,3 +5,29 @@
 .adm-tag{font:700 10px var(--mono);letter-spacing:.16em;color:var(--bad);border:1px solid rgba(255,90,122,.45);background:rgba(255,90,122,.1);padding:4px 8px;border-radius:6px}
 .adm-top .sp{flex:1}.adm-user{font-size:13px;color:var(--mu)}
 @media (max-width:600px){.adm-user,.adm-top .logo b{display:none}}
+
+/* sininho de avisos */
+.adm-bell{position:relative;display:grid;place-items:center;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);color:var(--tx);transition:background .2s,border-color .2s}
+.adm-bell:hover{background:rgba(255,255,255,.06);border-color:var(--cy)}
+.adm-bell b{position:absolute;top:-5px;right:-5px;min-width:19px;height:19px;padding:0 5px;border-radius:99px;display:grid;place-items:center;background:var(--bad);color:#fff;font:700 11px/1 var(--mono)}
+.adm-bell b[hidden]{display:none}
+.bdg-pay{margin-left:6px;min-width:19px;height:19px;padding:0 6px;display:inline-grid;place-items:center;border-radius:99px;background:var(--bad);color:#fff;font:700 11px/1 var(--mono);vertical-align:middle}
+.bdg-pay[hidden]{display:none}
+
+/* aba Pagamentos */
+.pt-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 18px}
+.pt-tabs button{padding:8px 15px;border-radius:99px;border:1px solid var(--line);background:transparent;color:var(--mu);font:600 13px inherit;cursor:pointer;transition:all .2s}
+.pt-tabs button:hover{color:var(--tx)}.pt-tabs button.on{background:var(--cy);border-color:var(--cy);color:#041016}
+.pq{display:grid;grid-template-columns:96px minmax(0,1fr) auto;gap:18px;align-items:center;padding:16px;margin-bottom:12px;border:1px solid var(--line);border-radius:var(--r);background:var(--panel);transition:border-color .2s}
+.pq:hover{border-color:rgba(46,230,200,.4)}
+.pq.slim{grid-template-columns:minmax(0,1fr) auto}
+.pq-th{width:96px;height:96px;border-radius:12px;object-fit:cover;object-position:top;background:#070D18;border:1px solid var(--line);display:grid;place-items:center;cursor:zoom-in;font:700 14px var(--mono);color:var(--cy)}
+.pq-th.pdf{cursor:pointer}
+.pq-b{min-width:0;display:grid;gap:5px}
+.pq-t{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.pq-r{display:grid;gap:8px;justify-items:end;text-align:right}
+.pq-v{font-size:24px;font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.pq-h{font-size:16px;font-weight:700;margin:28px 0 12px}
+.pq-chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip-s{padding:6px 11px;border-radius:99px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--mu);font:12.5px inherit;cursor:pointer}.chip-s:hover{color:var(--tx);border-color:var(--cy)}
+@media (max-width:720px){.pq{grid-template-columns:72px minmax(0,1fr)}.pq-th{width:72px;height:72px}.pq-r{grid-column:1/-1;grid-template-columns:auto 1fr;justify-items:start;text-align:left;align-items:center}.pq.slim{grid-template-columns:1fr}}
